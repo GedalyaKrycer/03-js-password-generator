@@ -28,9 +28,17 @@ function passLengthOption() {
         return userValidLength = customPassUser;
 
       } else {
-
-        // This asks the user to submit a valid pass length again 
-        getUserPassLength();
+        // Validates if a user wants to continue or cancel the prompt 
+        if (customPassUser) {
+          // This asks the user to submit a valid pass length again 
+          getUserPassLength();
+        } else {
+          // Updates the deafult to 8
+          customPassUser = 8;
+          // passes 8 to the next scope and stops the function
+          return userValidLength = customPassUser; 
+        }
+        
 
       }
     }
