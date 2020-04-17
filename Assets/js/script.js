@@ -6,8 +6,6 @@ generateBtn.addEventListener("click", writePassword);
 
 
 
-
-
 // Ask Prompt for password length 
 function passLengthOption() {
   let customPassLength = confirm("Would you like to specify a password length?");
@@ -19,17 +17,19 @@ function passLengthOption() {
 
     // verifies that the user submission is a number and between 8 and 128.
     if (customPassUser >= 8 && customPassUser <= 128) {
-      console.log("Good number");
+      return customPassUser;
     } else {
-      console.log("Bad number");
+      console.log("Return to prevoius prompt");
     }
 
-
+    // Submit false which will make the default length 8
   } else {
-    let customPassUser = false;
+    return customPassUser = 8;
   }
+
 }
 
+console.log(passLengthOption());
 
 
 // Write password to the #password input
