@@ -6,12 +6,15 @@ let generateBtn = document.querySelector("#generate");
 generateBtn.addEventListener("click", writePassword);
 
 
+// -------------------------------------------------
+
+
 // Ask Prompt for password length 
 function passLengthOption() {
-  let customPassLength = confirm("Would you like to specify a password length?");
-  
+  let passLengthConfirm = confirm("Would you like to specify a password length?");
+
   // If argument equals true, then the if statement is triggered. Otherwise the else statement is triggered. 
-  if (customPassLength) {
+  if (passLengthConfirm) {
 
     // Calls the below function
     getUserPassLength();
@@ -52,6 +55,30 @@ function passLengthOption() {
 
 }
 
+
+// -------------------------------------------------
+
+// Choosing a character type  
+
+// Character Type Object  
+let characterType = {
+  // Arrays for each type
+  upperCaseChar: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+  lowerCaseChar: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"],
+  numbersChar: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+  specialChar: ["!", "#", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]"],
+
+  characterTypeOption: function() {
+    let characterTypeConfirm = confirm("Would you like to include a special character ?");
+  }
+
+
+};
+
+
+
+
+// -------------------------------------------------
 
 // Write password to the #password input
 function writePassword() {
