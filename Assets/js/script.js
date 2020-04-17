@@ -8,6 +8,7 @@ generateBtn.addEventListener("click", writePassword);
 
 // -------------------------------------------------
 
+// Choosing a Password Length 
 
 // Ask Prompt for password length 
 function passLengthOption() {
@@ -58,7 +59,15 @@ function passLengthOption() {
 
 // -------------------------------------------------
 
-// Choosing a character type  
+// Choosing a Character Type  
+
+// Object that tells the system which options to include 
+let typesVerified = {
+  yesUpper: true, 
+  yesLower: true,
+  yesNum: true,
+  yesSpecial: true
+}; 
 
 // Character Type Object  
 let characterType = {
@@ -68,10 +77,45 @@ let characterType = {
   numbersChar: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
   specialChar: ["!", "#", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]"],
 
+  // Asks Prompt for Character Type
   characterTypeOption: function() {
-    let characterTypeConfirm = confirm("Would you like to include a special character ?");
-  }
+    let charTypeConfirm = confirm("Would you like to customize which character types to include?");
 
+    // If argument equals true, then the if statement is triggered. Otherwise the else statement is triggered. 
+    if (charTypeConfirm) {
+      
+      // Asks user to confirm uppercase types
+      let askUpper = confirm("Would you like to include uppercase characters? \n(Example: ABC)");
+
+      // Asks user to confirm lowercase types
+      let askLower = confirm("Would you like to include lowercase characters? \n(Example: abc)");
+
+      // Asks user to confirm number types
+      let askNum = confirm("Would you like to include number characters? \n(Example: 123)");
+
+      // Asks user to confirm lowercase types
+      let askSpecial = confirm("Would you like to include special characters? \n(Example: !#&)");
+
+      // Validations on what the user confirmed
+      askUpper != true ? typesVerified.yesUpper = false : true;
+
+      askLower != true ? typesVerified.yesLower = false : true;
+
+      askNum != true ? typesVerified.yesNum = false : true;
+
+      askSpecial != true ? typesVerified.yesSpecial = false : true;
+
+      // Returns the results of the above validations 
+      return [askUpper, askLower, askNum, askNum];
+
+
+      // If confirm is declined this sets the default length to 8
+    } else {
+
+        // Tells the system to include all options. 
+        return typesVerified;
+      }
+  }
 
 };
 
@@ -80,11 +124,16 @@ let characterType = {
 
 // -------------------------------------------------
 
+
 // Write password to the #password input
 function writePassword() {
-  // Triggers function for Pass length
+  // Triggers function for Password length
   // passLengthOption();
   console.log(passLengthOption());
+
+  // Triggers function for Character Type
+  // characterType.characterTypeOption();
+  console.log(characterType.characterTypeOption());
 
   // Stores text to write to the html 
   let password = generatePassword();
@@ -95,6 +144,8 @@ function writePassword() {
   passwordText.value = password;
 
 }
+
+// -------------------------------------------------
 
 
 // Values in this function will appear on the page, when clicking the "Generate Password" button.
