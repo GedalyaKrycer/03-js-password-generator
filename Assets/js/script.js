@@ -1,9 +1,9 @@
 // Assignment Code
 let generateBtn = document.querySelector("#generate");
 
+
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
 
 
 // Ask Prompt for password length 
@@ -12,38 +12,40 @@ function passLengthOption() {
   
   // If argument equals true, then the if statement is triggered. Otherwise the else statement is triggered. 
   if (customPassLength) {
+
     // Calls the below function
     getUserPassLength();
+
+    // Adds user submission to the Global Scope
     return userValidLength;
-    // This function triggers and validates the user's pass length submission
+
+    // Triggers/validates the user's submission
     function getUserPassLength () {
 
-      // This asks the user for their length
+      // Asks the user for their desired pass length
       let customPassUser = prompt("Pick a number between 8 and 128 for your character length.");
 
-      // verifies submission is a number between 8 and 128.
+      // Verifies submission is a number between 8–128
       if (customPassUser >= 8 && customPassUser <= 128) {
         
-        // Lets the user's answer be used on the global scope
+        // Adds user submission to the above Scope
         return userValidLength = customPassUser;
 
       } else {
         // Validates if a user wants to continue or cancel the prompt 
         if (customPassUser) {
-          // This asks the user to submit a valid pass length again 
+          // Asks the user to re-submit a valid pass length 
           getUserPassLength();
         } else {
-          // Updates the deafult to 8
+          // Updates the default to 8
           customPassUser = 8;
-          // passes 8 to the next scope and stops the function
+          // Returns 8 to the above scope and stops the function
           return userValidLength = customPassUser; 
         }
-        
-
       }
     }
 
-    // Submit false which will make the default length 8
+    // If confirm is declined this sets the default length to 8
   } else {
     return customPassUser = 8;
   }
