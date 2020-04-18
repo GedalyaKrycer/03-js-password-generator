@@ -152,36 +152,3 @@ function writePassword() {
 function generatePassword() {
   return "hi";
 }
-
-
-
-
-
-
-
-
-/*
-// Ask Prompt for password length 
-function passLengthOption() {
-  let customPassLength = confirm("Would you like to specify a password length?");
-  
-  // If argument equals true, then the if statement is "truthy" and is triggered. Otherwise the else statement is. 
-  if (customPassLength) {
-    
-    // This asks the user for their length
-    let customPassUser = prompt("Pick a number between 8 and 128 for your character length.");
-
-    // verifies that the user submission is a number and between 8 and 128.
-    if (customPassUser >= 8 && customPassUser <= 128) {
-      return customPassUser;
-    } else {
-      console.log("Return to prevoius prompt");
-    }
-
-    // Submit false which will make the default length 8
-  } else {
-    return customPassUser = 8;
-  }
-
-}
-*/
