@@ -24,7 +24,7 @@ function passLengthOption() {
     return userValidLength;
 
     // Triggers/validates the user's submission
-    function getUserPassLength () {
+    function getUserPassLength() {
 
       // Asks the user for their desired pass length
       let customPassUser = prompt("Pick a number between 8 and 128 for your character length.");
@@ -36,13 +36,17 @@ function passLengthOption() {
         return userValidLength = customPassUser;
 
       } else {
+
         // Validates if a user wants to continue or cancel the prompt 
         if (customPassUser) {
+
           // Asks the user to re-submit a valid pass length 
           getUserPassLength();
         } else {
+
           // Updates the default to 8
           customPassUser = 8;
+
           // Returns 8 to the above scope and stops the function
           return userValidLength = customPassUser; 
         }
@@ -51,13 +55,14 @@ function passLengthOption() {
 
     // If confirm is declined this sets the default length to 8
   } else {
-    return customPassUser = 8;
+    return userValidLength = 8;
   }
 
 }
 
 
 // -------------------------------------------------
+
 
 // Choosing a Character Type  
 
@@ -72,10 +77,10 @@ let typesVerified = {
 // Character Type Object  
 let characterType = {
   // Arrays for each type
-  upperCaseChar: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-  lowerCaseChar: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"],
-  numbersChar: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-  specialChar: ["!", "#", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]"],
+  upperCaseChar: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  lowerCaseChar: "abcdefghijklmnopqrstuvwxyz",
+  numbersChar: "0123456789",
+  specialChar: "!#$%&=@",
 
   // Asks Prompt for Character Type
   characterTypeOption: function() {
@@ -119,6 +124,11 @@ let characterType = {
 
 };
 
+// -------------------------------------------------
+
+// 
+
+
 
 
 
@@ -128,12 +138,12 @@ let characterType = {
 // Write password to the #password input
 function writePassword() {
   // Triggers function for Password length
-  // passLengthOption();
-  console.log(passLengthOption());
+  passLengthOption();
+  // console.log(passLengthOption());
 
   // Triggers function for Character Type
-  // characterType.characterTypeOption();
-  console.log(characterType.characterTypeOption());
+  characterType.characterTypeOption();
+  // console.log(characterType.characterTypeOption());
 
   // Stores text to write to the html 
   let password = generatePassword();
@@ -150,5 +160,32 @@ function writePassword() {
 
 // Values in this function will appear on the page, when clicking the "Generate Password" button.
 function generatePassword() {
-  return "hi";
+  
+  // Empty array to hold the selections below
+  let charSelectArray = [];
+  
+  if (typesVerified.yesUpper) {
+    charSelectArray.push(...characterType.upperCaseChar.split(""));
+  } 
+
+  if (typesVerified.yesLower) {
+    charSelectArray.push(...characterType.lowerCaseChar.split(""));
+  } 
+
+  if (typesVerified.yesNum) {
+    charSelectArray.push(...characterType.numbersChar.split(""));
+  } 
+
+  if (typesVerified.yesSpecial) {
+    charSelectArray.push(...characterType.specialChar.split(""));
+  } 
+  console.log(charSelectArray);
+  
+
+  for (var i = 0; i < userValidLength; i++) {
+    let finalPass = charSelectArray[Math.floor(Math.random() * charSelectArray.length)];;
+    return finalPass;
+  }
+
+  return finalPass;
 }
