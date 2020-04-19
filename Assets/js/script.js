@@ -118,6 +118,14 @@ let characterType = {
 
       askSpecial != true ? typesVerified.yesSpecial = false : true;
 
+      // Conditional to reset the booleans if user confirms making a char type selection, but does not confirm any of the four types. This resulted in the password not generating.
+      if (askUpper === false 
+        && askLower === false 
+        && askNum === false 
+        && askNum === false) {
+        charTypesReset();
+      }
+
       // Returns the results of the above validations 
       return [askUpper, askLower, askNum, askNum];
 
