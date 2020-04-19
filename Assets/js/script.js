@@ -163,6 +163,7 @@ function generatePassword() {
   
   // Empty array to hold the selections below
   let charSelectArray = [];
+  let finalPass = [];
   
   if (typesVerified.yesUpper) {
     charSelectArray.push(...characterType.upperCaseChar.split(""));
@@ -183,8 +184,8 @@ function generatePassword() {
   
 
   for (var i = 0; i < userValidLength; i++) {
-    let finalPass = charSelectArray[Math.floor(Math.random() * charSelectArray.length)];;
-    return finalPass;
+    let random = charSelectArray[Math.floor(Math.random() * charSelectArray.length)];
+    finalPass.push(random);
   }
 
   return finalPass;
