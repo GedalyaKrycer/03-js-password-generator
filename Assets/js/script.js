@@ -57,7 +57,6 @@ function passLengthOption() {
   } else {
     return userValidLength = 8;
   }
-
 }
 
 
@@ -76,7 +75,7 @@ let typesVerified = {
 
 // Character Type Object  
 let characterType = {
-  // Arrays for each type
+  // Strings of each type of character, which will get converted into arrays further down the page
   upperCaseChar: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
   lowerCaseChar: "abcdefghijklmnopqrstuvwxyz",
   numbersChar: "0123456789",
@@ -126,24 +125,15 @@ let characterType = {
 
 // -------------------------------------------------
 
-// 
-
-
-
-
-
-// -------------------------------------------------
-
 
 // Write password to the #password input
 function writePassword() {
+  
   // Triggers function for Password length
   passLengthOption();
-  // console.log(passLengthOption());
 
   // Triggers function for Character Type
   characterType.characterTypeOption();
-  // console.log(characterType.characterTypeOption());
 
   // Stores text to write to the html 
   let password = generatePassword();
@@ -161,32 +151,42 @@ function writePassword() {
 // Values in this function will appear on the page, when clicking the "Generate Password" button.
 function generatePassword() {
   
-  // Empty array to hold the selections below
+  // Empty array to hold the user selections below
   let charSelectArray = [];
+
+  // Empty array that holds the final password
   let finalPass = [];
-  
+
+  // Validates if uppercase has been selected  
   if (typesVerified.yesUpper) {
     charSelectArray.push(...characterType.upperCaseChar.split(""));
   } 
 
+  // Validates if lowercase has been selected  
   if (typesVerified.yesLower) {
     charSelectArray.push(...characterType.lowerCaseChar.split(""));
   } 
 
+  // Validates if num has been selected  
   if (typesVerified.yesNum) {
     charSelectArray.push(...characterType.numbersChar.split(""));
   } 
 
+  // Validates if special cases has been selected  
   if (typesVerified.yesSpecial) {
     charSelectArray.push(...characterType.specialChar.split(""));
   } 
-  console.log(charSelectArray);
   
-
+  // Loops through the user selected character array by the length they specified 
   for (var i = 0; i < userValidLength; i++) {
+
+    // Randomly selects a character from the charter slection and saves it to a new var
     let random = charSelectArray[Math.floor(Math.random() * charSelectArray.length)];
+
+    // Adds the selection to the finalPass array
     finalPass.push(random);
   }
 
+  // Returns the final password selection to the global scope and removes the array commas. 
   return finalPass.join("");
 }
