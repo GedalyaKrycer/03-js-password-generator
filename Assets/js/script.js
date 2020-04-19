@@ -1,7 +1,6 @@
 // Assignment Code
 let generateBtn = document.querySelector("#generate");
 
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
@@ -73,6 +72,16 @@ let typesVerified = {
   yesSpecial: true
 }; 
 
+// Function to reset the booleans 
+function charTypesReset() {
+  typesVerified = {
+    yesUpper: true, 
+    yesLower: true,
+    yesNum: true,
+    yesSpecial: true
+  }; 
+}
+
 // Character Type Object  
 let characterType = {
   // Strings of each type of character, which will get converted into arrays further down the page
@@ -143,6 +152,8 @@ function writePassword() {
 
   passwordText.value = password;
 
+  // Resets booleans to true so all the characters show up if the generate button is clicked again.
+  charTypesReset();
 }
 
 // -------------------------------------------------
@@ -178,7 +189,7 @@ function generatePassword() {
   } 
   
   // Loops through the user selected character array by the length they specified 
-  for (var i = 0; i < userValidLength; i++) {
+  for (let i = 0; i < userValidLength; i++) {
 
     // Randomly selects a character from the charter slection and saves it to a new var
     let random = charSelectArray[Math.floor(Math.random() * charSelectArray.length)];
