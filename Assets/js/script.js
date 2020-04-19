@@ -188,5 +188,5 @@ function generatePassword() {
     finalPass.push(random);
   }
 
-  return finalPass;
+  return finalPass.join("");
 }
